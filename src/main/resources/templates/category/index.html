@@ -2,42 +2,79 @@
 <html
     lang="en"
     xmlns="https://www.thymeleaf.org"
-    xmlns-layout="http://www.ulteaq.net.nz/thymeleaf/layout"
+    xmlns:layout="http://www.ultreaq.net.nz/thymeleaf/layout"
     layout:decorate="~{layout/main}"
 >
     <body>
         <section layout:fragment="container">
-            <h1 class="my-3 text-dark" th:text="${title}"></h1>
-
-            <table class="table table-striped table-hover" data-bs-theme="dark">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                </tbody>
-            </table>
+            <h3 th:text="${title}"></h3>
+            <div class="mb-2">
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="openForm()"
+                >
+                    Add Category
+                </button>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-primary">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Category Name</th>
+                            <th scope="col">Tanggal Dibuat</th>
+                            <th scope="col">Handle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="category,iter : ${categories}">
+                            <th scope="row" th:text="${iter.count}"></th>
+                            <td th:text="${category.name}"></td>
+                            <td th:text="${category.createdAt}"></td>
+                            <td>
+                                <button
+                                    type="button"
+                                    class="btn btn-primary"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#myModal"
+                                >
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- Modal -->
+                <div
+                    class="modal fade"
+                    id="myModal"
+                    data-bs-backdrop="static"
+                    data-bs-keyboard="false"
+                    tabindex="-1"
+                    aria-labelledby="formLabel"
+                    aria-hidden="true"
+                >
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1
+                                    class="modal-title fs-5"
+                                    id="titleModal"
+                                ></h1>
+                                <button
+                                    type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"
+                                ></button>
+                            </div>
+                            <div class="modal-body"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script src="js/category.js"></script>
         </section>
     </body>
 </html>
