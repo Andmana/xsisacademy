@@ -1,0 +1,40 @@
+<form action="user/save" method="post" th:object="${user}">
+    <input type="hidden" name="id" id="id" th:field="*{id}" />
+    <div class="mb-3">
+        <label for="name" class="form-label">User Name</label>
+        <input
+            type="text"
+            class="form-control"
+            id="name"
+            name="name"
+            placeholder="User Name"
+            th:field="*{name}"
+        />
+    </div>
+    <div class="mb-3">
+        <label for="address" class="form-label">User address</label>
+        <input
+            type="text"
+            class="form-control"
+            id="address"
+            address="address"
+            placeholder="User address"
+            th:field="*{address}"
+        />
+    </div>
+    <div class="mb-3">
+        <label for="phoneNumber" class="form-label">Phone Number</label>
+        <input
+            type="text"
+            class="form-control"
+            id="phoneNumber"
+            phoneNumber="phoneNumber"
+            placeholder="0812321"
+            th:field="*{phoneNumber}"
+        />
+    </div>
+
+    <button type="submit" class="btn btn-primary" style="float: right">
+        Save
+    </button>
+</form>
