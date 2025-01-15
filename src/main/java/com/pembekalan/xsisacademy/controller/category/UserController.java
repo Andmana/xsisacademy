@@ -1,12 +1,18 @@
 package com.pembekalan.xsisacademy.controller.category;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.pembekalan.xsisacademy.dto.request.UserRequestDto;
+import com.pembekalan.xsisacademy.dto.response.UserResponseDto;
 import com.pembekalan.xsisacademy.entity.User;
 import com.pembekalan.xsisacademy.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,11 +31,26 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    private ModelMapper modelMapper(){
+        return new ModelMapper();
+    }
+
     @GetMapping("")
     public ModelAndView getAllUsers() {
         ModelAndView view = new ModelAndView("user/index");
-        List<User> users = userService.getAllUsers();
-        view.addObject("users", users);
+        // List<UserRespoonseDto> userRespoonseDtos = new ArrayList<>();
+        
+        // for(User user : users){
+            //     UserResponseDto userResponseDto = new UserResponseDto();
+        //     userResponseDto.setName(user.getName());
+        //     userResponseDto.setPhoneNumber(user.getPhoneNumber());
+        //     userResponseDto.setAddress(user.getAddress());
+        //     userResponseDtos.add(userResponseDto);
+        // }
+
+
+        List<UserResponseDto> ussResponseDtos = userService.getAllUsers();
+        view.addObject("users", ussResponseDtos);
         view.addObject("title", "User Page");
         return view;
     }
@@ -37,15 +58,15 @@ public class UserController {
     @GetMapping("/form")
     public ModelAndView userForm() {
         ModelAndView view = new ModelAndView("user/form");
-        User user = new User();
-        view.addObject("user", user);
+        UserResponseDto userResponseDto = new UserResponseDto();
+        view.addObject("user", userResponseDto);
         return view;
     }
 
     @PostMapping("save")
-    public ModelAndView saveUser (@ModelAttribute User user,  BindingResult result) {
+    public ModelAndView saveUser (@ModelAttribute UserRequestDto userRequestDto,  BindingResult result) {
         if(!result.hasErrors()){
-            userService.saveUser(user);
+            userService.saveUser(userRequestDto);
         }
         return new ModelAndView("redirect:/user");
         
@@ -54,16 +75,15 @@ public class UserController {
     @GetMapping("edit/{id}")
     public ModelAndView editUser(@PathVariable Integer id ) {
         ModelAndView view = new ModelAndView("user/form");
-        User user = userService.getUserById(id);
-        view.addObject("user", user);
+        UserResponseDto userResponseDto = userService.getUserById(id);
+        view.addObject("user", userResponseDto);
         return view;
     }
     
 
     @GetMapping("delete/{id}")
     public ModelAndView deleteUser(@PathVariable Integer id) {
-        User user = userService.getUserById(id);
-        userService.deleteUserById(user.getId());
+        userService.deleteUserById(id);
         return new ModelAndView("redirect:/user");
     }
     
