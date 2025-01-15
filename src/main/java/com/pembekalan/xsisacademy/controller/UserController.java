@@ -1,4 +1,4 @@
-package com.pembekalan.xsisacademy.controller.category;
+package com.pembekalan.xsisacademy.controller;
 
 import java.util.ArrayList;
 import java.util.List;
