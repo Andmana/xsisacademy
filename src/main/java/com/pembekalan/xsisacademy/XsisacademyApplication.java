@@ -10,8 +10,10 @@ import org.springframework.context.annotation.Bean;
 
 import com.github.javafaker.Faker;
 import com.pembekalan.xsisacademy.entity.Category;
+import com.pembekalan.xsisacademy.entity.Publisher;
 import com.pembekalan.xsisacademy.entity.User;
 import com.pembekalan.xsisacademy.repository.CategoryRepository;
+import com.pembekalan.xsisacademy.repository.PublisherRepository;
 import com.pembekalan.xsisacademy.repository.UserRepository;
 
 @SpringBootApplication
@@ -22,9 +24,13 @@ public class XsisacademyApplication {
 
 	@Autowired
 	UserRepository userRepository;
+
+	@Autowired
+	PublisherRepository publisherRepository;
 	public static void main(String[] args) {
 		SpringApplication.run(XsisacademyApplication.class, args);
 	}
+
 	@Bean
 	CommandLineRunner commandLineRunner(){
 		return args -> {
@@ -42,6 +48,12 @@ public class XsisacademyApplication {
 				User user = new User(faker.name().fullName(), faker.phoneNumber().phoneNumber(), faker.address().fullAddress());
 				userRepository.save(user);
 			}
+
+			for(int i = 0; i < 10; i++){
+				Publisher publisher = new Publisher(faker.book().publisher(), faker.address().fullAddress());
+				publisherRepository.save(publisher);
+			}
+
 		};
 	}
 
