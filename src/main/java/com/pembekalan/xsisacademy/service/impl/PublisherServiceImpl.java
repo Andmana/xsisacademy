@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.pembekalan.xsisacademy.dto.request.PublisherRequestDto;
 import com.pembekalan.xsisacademy.dto.response.PublisherResponseDto;
-import com.pembekalan.xsisacademy.dto.response.UserResponseDto;
 import com.pembekalan.xsisacademy.entity.Publisher;
 import com.pembekalan.xsisacademy.repository.PublisherRepository;
 import com.pembekalan.xsisacademy.service.PublisherService;
