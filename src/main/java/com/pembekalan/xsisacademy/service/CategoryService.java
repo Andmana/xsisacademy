@@ -9,6 +9,6 @@ import com.pembekalan.xsisacademy.entity.Category;
 public interface CategoryService {
     List<CategoryResponseDto> getAllCategories();
     CategoryResponseDto getCategoryById(Integer id);
-    Category saveCategory(CategoryRequestDto categoryRequestDto);
+    Category saveCategory(CategoryRequestDto requestDto);
     void deleteCategoryById(Integer id);
 }

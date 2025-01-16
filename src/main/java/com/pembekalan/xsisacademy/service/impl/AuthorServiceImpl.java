@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.pembekalan.xsisacademy.dto.request.AuthorRequestDto;
 import com.pembekalan.xsisacademy.dto.response.AuthorResponseDto;
 import com.pembekalan.xsisacademy.entity.Author;
+import com.pembekalan.xsisacademy.entity.Category;
 import com.pembekalan.xsisacademy.repository.AuthorRepository;
 import com.pembekalan.xsisacademy.service.AuthorService;
 
@@ -19,38 +20,39 @@ public class AuthorServiceImpl implements AuthorService {
     @Autowired
     AuthorRepository authorRepository;
 
-    private ModelMapper modelMapper(){
-        return new ModelMapper();
-    }
+    private ModelMapper modelMapper = new ModelMapper();
 
     @Override
     public List<AuthorResponseDto> getAllAuthors() {
         // TODO Auto-generated method stub
-        List<Author> authors = authorRepository.findAll();
-        List<AuthorResponseDto> authorResponseDtos = authors.stream().map(author -> modelMapper().map(author, AuthorResponseDto.class)).collect(Collectors.toList());
-        
-        return authorResponseDtos;
+        List<Author> authors = authorRepository.getAllAuthors();
+        List<AuthorResponseDto> data = authors.stream().map(author -> modelMapper.map(author, AuthorResponseDto.class)).collect(Collectors.toList());
+        return data;
     }
 
     @Override
     public AuthorResponseDto getAuthorById(Integer id) {
         // TODO Auto-generated method stub
         Author author = authorRepository.findById(id).orElse(null);
-        AuthorResponseDto authorResponseDto = modelMapper().map(author, AuthorResponseDto.class);
-        return authorResponseDto;
+        AuthorResponseDto data = modelMapper.map(author, AuthorResponseDto.class);
+        return data;
     }
 
     @Override
-    public Author saveAuthor(AuthorRequestDto authorRequestDto) {
+    public Author saveAuthor(AuthorRequestDto requestDto) {
         // TODO Auto-generated method stub
-        Author author = modelMapper().map(authorRequestDto, Author.class);
-        return authorRepository.save(author);
+        Author data = modelMapper.map(requestDto, Author.class);
+        return authorRepository.save(data);
     }
 
     @Override
     public void deleteAuthorById(Integer id) {
         // TODO Auto-generated method stub
-        authorRepository.deleteById(id);
+        Author data = authorRepository.findById(id).orElse(null);
+        if (data != null){
+            data.setDeleted(true);
+            authorRepository.save(data);
+        }
     }
     
 }

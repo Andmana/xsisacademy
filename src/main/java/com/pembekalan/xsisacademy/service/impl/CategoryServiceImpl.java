@@ -39,9 +39,9 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
     @Override
-    public Category saveCategory(CategoryRequestDto categoryRequestDto) {
+    public Category saveCategory(CategoryRequestDto requestDto) {
         // TODO Auto-generated method stub
-        Category data = modelMapper.map(categoryRequestDto, Category.class);
+        Category data = modelMapper.map(requestDto, Category.class);
         return categoryRepository.save(data);
     }
 
