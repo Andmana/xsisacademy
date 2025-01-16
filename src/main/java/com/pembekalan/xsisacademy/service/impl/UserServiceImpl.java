@@ -24,8 +24,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserResponseDto> getAllUsers() {
         // TODO Auto-generated method stub
-        List<User> categories = userRepository.getAllUsers();
-        List<UserResponseDto> data = categories.stream().map(user -> modelMapper.map(user, UserResponseDto.class)).collect(Collectors.toList());
+        List<User> users = userRepository.getAllUsers();
+        List<UserResponseDto> data = users.stream().map(user -> modelMapper.map(user, UserResponseDto.class)).collect(Collectors.toList());
         return data;
     }
 

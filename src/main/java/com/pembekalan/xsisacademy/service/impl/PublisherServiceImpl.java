@@ -19,33 +19,39 @@ public class PublisherServiceImpl implements PublisherService {
     @Autowired
     PublisherRepository publisherRepository;
 
-    private ModelMapper modelMapper(){
-        return new ModelMapper();
-    }
+    private ModelMapper modelMapper = new ModelMapper();
 
     @Override
     public List<PublisherResponseDto> getAllPublishers() {
-        List<Publisher> publishers = publisherRepository.findAll();
-        List<PublisherResponseDto> publisherResponseDtos = publishers.stream().map(publisher -> modelMapper().map(publisher, PublisherResponseDto.class)).collect(Collectors.toList());
-        return publisherResponseDtos;
+        // TODO Auto-generated method stub
+        List<Publisher> publishers = publisherRepository.getAllPublishers();
+        List<PublisherResponseDto> data = publishers.stream().map(publisher -> modelMapper.map(publisher, PublisherResponseDto.class)).collect(Collectors.toList());
+        return data;
     }
 
     @Override
     public PublisherResponseDto getPublisherById(Integer id) {
+        // TODO Auto-generated method stub
         Publisher publisher = publisherRepository.findById(id).orElse(null);
-        PublisherResponseDto publisherResponseDto = modelMapper().map(publisher, PublisherResponseDto.class);
-        return publisherResponseDto;
+        PublisherResponseDto data = modelMapper.map(publisher, PublisherResponseDto.class);
+        return data;
     }
 
     @Override
-    public Publisher savePublisher(PublisherRequestDto PublisherRequestDto) {
-        Publisher publisher = modelMapper().map(PublisherRequestDto, Publisher.class);
-        return publisherRepository.save(publisher);
+    public Publisher savePublisher(PublisherRequestDto requestDto) {
+        // TODO Auto-generated method stub
+        Publisher data = modelMapper.map(requestDto, Publisher.class);
+        return publisherRepository.save(data);
     }
 
     @Override
     public void deletePublisherById(Integer id) {
-        publisherRepository.deleteById(id);
+        // TODO Auto-generated method stub
+        Publisher data = publisherRepository.findById(id).orElse(null);
+        if (data != null){
+            data.setDeleted(true);
+            publisherRepository.save(data);
+        }
     }
     
 }
