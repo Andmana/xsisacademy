@@ -27,7 +27,6 @@ public class Book extends BaseEntity{
         this.synopsis = synopsis;
         this.publishedYear = publishedYear;
     }
-    
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,6 +51,7 @@ public class Book extends BaseEntity{
     @Column(columnDefinition = "TEXT") // For storing long text
     private String synopsis;
 
+    @Column(nullable = true)
     private Integer publishedYear;
 
 }

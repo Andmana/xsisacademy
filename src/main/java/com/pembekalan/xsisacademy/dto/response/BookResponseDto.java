@@ -7,9 +7,9 @@ import lombok.Data;
 @Data
 public class BookResponseDto {
     private Integer id;
-    private String authorName;
-    private Category category;
-    private String publisherName;
+    private AuthorResponseDto author;
+    private CategoryResponseDto category;
+    private PublisherResponseDto publisher;
     private String title;
     private String synopsis;
     private Integer publishedYear;
