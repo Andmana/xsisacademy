@@ -3,7 +3,6 @@ package com.pembekalan.xsisacademy.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,35 +28,35 @@ public class PublisherController {
     PublisherService publisherService;
 
     @GetMapping("")
-    public ResponseEntity<?> getAllPublishers(){
+    public ResponseEntity<ApiResponse<List<PublisherResponseDto>>> getAllPublishers() {
         List<PublisherResponseDto> data = publisherService.getAllPublishers();
-        return new ResponseEntity<>(new ApiResponse<>(200, "success", data), HttpStatus.OK);
+        return ResponseEntity.ok(new ApiResponse<>(200, "success", data));
     }
-
+    
     @GetMapping("/{id}")
-    public ResponseEntity<?> getPublisherById(@PathVariable Integer id){
+    public ResponseEntity<ApiResponse<PublisherResponseDto>> getPublisherById(@PathVariable Integer id) {
         PublisherResponseDto data = publisherService.getPublisherById(id);
-        return new ResponseEntity<>(new ApiResponse<>(200, "success", data), HttpStatus.OK);
-    } 
-
-    @PostMapping("/")
-    public ResponseEntity<?> savePublisher(@RequestBody PublisherRequestDto requestDto){
-        Publisher data = publisherService.savePublisher(requestDto);
-        return new ResponseEntity<>(new ApiResponse<>(200, "success", data), HttpStatus.OK);
+        return ResponseEntity.ok(new ApiResponse<>(200, "success", data));
     }
-
+    
+    @PostMapping("/")
+    public ResponseEntity<ApiResponse<Publisher>> savePublisher(@RequestBody PublisherRequestDto requestDto) {
+        Publisher data = publisherService.savePublisher(requestDto);
+        return ResponseEntity.ok(new ApiResponse<>(200, "success", data));
+    }
+    
     @PutMapping("/{id}")
-    public ResponseEntity<?> updatePublisher(@PathVariable Integer id, @RequestBody PublisherRequestDto requestDto){
+    public ResponseEntity<ApiResponse<Publisher>> updatePublisher(@PathVariable Integer id, @RequestBody PublisherRequestDto requestDto) {
         requestDto.setId(id);
         Publisher data = publisherService.savePublisher(requestDto);
-        return new ResponseEntity<>(new ApiResponse<>(200, "success", data), HttpStatus.OK);
+        return ResponseEntity.ok(new ApiResponse<>(200, "success", data));
     }
-
+    
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deletePublisher(@PathVariable Integer id){
+    public ResponseEntity<ApiResponse<Void>> deletePublisher(@PathVariable Integer id) {
         publisherService.deletePublisherById(id);
-        return new ResponseEntity<>(new ApiResponse<>(200, "success", null), HttpStatus.OK);
-
+        return ResponseEntity.ok(new ApiResponse<>(200, "success", null));
     }
+    
     
 }

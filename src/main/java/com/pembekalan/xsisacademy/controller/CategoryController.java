@@ -1,10 +1,8 @@
 package com.pembekalan.xsisacademy.controller;
 
-import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,34 +27,34 @@ public class CategoryController {
     CategoryService categoryService;
 
     @GetMapping("")
-    public ResponseEntity<?> getAllCategories(){
+    public ResponseEntity<ApiResponse<List<CategoryResponseDto>>> getAllCategories() {
         List<CategoryResponseDto> data = categoryService.getAllCategories();
-        return new ResponseEntity<>(new ApiResponse<>(200, "success", data), HttpStatus.OK);
+        return ResponseEntity.ok(new ApiResponse<>(200, "success", data));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getCategoryById(@PathVariable Integer id){
+    public ResponseEntity<ApiResponse<CategoryResponseDto>> getCategoryById(@PathVariable Integer id) {
         CategoryResponseDto data = categoryService.getCategoryById(id);
-        return new ResponseEntity<>(new ApiResponse<>(200, "success", data), HttpStatus.OK);
-    } 
+        return ResponseEntity.ok(new ApiResponse<>(200, "success", data));
+    }
 
     @PostMapping("/")
-    public ResponseEntity<?> saveCategory(@RequestBody CategoryRequestDto requestDto){
+    public ResponseEntity<ApiResponse<Category>> saveCategory(@RequestBody CategoryRequestDto requestDto) {
         Category data = categoryService.saveCategory(requestDto);
-        return new ResponseEntity<>(new ApiResponse<>(200, "success", data), HttpStatus.OK);
+        return ResponseEntity.ok(new ApiResponse<>(200, "success", data));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateCategory(@PathVariable Integer id, @RequestBody CategoryRequestDto requestDto){
+    public ResponseEntity<ApiResponse<Category>> updateCategory(@PathVariable Integer id, @RequestBody CategoryRequestDto requestDto) {
         requestDto.setId(id);
         Category data = categoryService.saveCategory(requestDto);
-        return new ResponseEntity<>(new ApiResponse<>(200, "success", data), HttpStatus.OK);
+        return ResponseEntity.ok(new ApiResponse<>(200, "success", data));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteCategory(@PathVariable Integer id){
+    public ResponseEntity<ApiResponse<Void>> deleteCategory(@PathVariable Integer id) {
         categoryService.deleteCategoryById(id);
-        return new ResponseEntity<>(new ApiResponse<>(200, "success", null), HttpStatus.OK);
-
+        return ResponseEntity.ok(new ApiResponse<>(200, "success", null));
     }
+
 }

@@ -3,7 +3,6 @@ package com.pembekalan.xsisacademy.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,35 +28,35 @@ public class UserController {
     UserService userService;
 
     @GetMapping("")
-    public ResponseEntity<?> getAllUsers(){
+    public ResponseEntity<ApiResponse<List<UserResponseDto>>> getAllUsers() {
         List<UserResponseDto> data = userService.getAllUsers();
-        return new ResponseEntity<>(new ApiResponse<>(200, "success", data), HttpStatus.OK);
+        return ResponseEntity.ok(new ApiResponse<>(200, "success", data));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getUserById(@PathVariable Integer id){
+    public ResponseEntity<ApiResponse<UserResponseDto>> getUserById(@PathVariable Integer id) {
         UserResponseDto data = userService.getUserById(id);
-        return new ResponseEntity<>(new ApiResponse<>(200, "success", data), HttpStatus.OK);
-    } 
+        return ResponseEntity.ok(new ApiResponse<>(200, "success", data));
+    }
 
     @PostMapping("/")
-    public ResponseEntity<?> saveUser(@RequestBody UserRequestDto requestDto){
+    public ResponseEntity<ApiResponse<User>> saveUser(@RequestBody UserRequestDto requestDto) {
         User data = userService.saveUser(requestDto);
-        return new ResponseEntity<>(new ApiResponse<>(200, "success", data), HttpStatus.OK);
+        return ResponseEntity.ok(new ApiResponse<>(200, "success", data));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateUser(@PathVariable Integer id, @RequestBody UserRequestDto requestDto){
+    public ResponseEntity<ApiResponse<User>> updateUser(@PathVariable Integer id, @RequestBody UserRequestDto requestDto) {
         requestDto.setId(id);
         User data = userService.saveUser(requestDto);
-        return new ResponseEntity<>(new ApiResponse<>(200, "success", data), HttpStatus.OK);
+        return ResponseEntity.ok(new ApiResponse<>(200, "success", data));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable Integer id){
+    public ResponseEntity<ApiResponse<Void>> deleteUser(@PathVariable Integer id) {
         userService.deleteUserById(id);
-        return new ResponseEntity<>(new ApiResponse<>(200, "success", null), HttpStatus.OK);
-
+        return ResponseEntity.ok(new ApiResponse<>(200, "success", null));
     }
+
 
 }

@@ -32,35 +32,34 @@ public class AuthorController {
     AuthorService authorService;
 
     @GetMapping("")
-    public ResponseEntity<?> getAllAuthors(){
+    public ResponseEntity<ApiResponse<List<AuthorResponseDto>>> getAllAuthors() {
         List<AuthorResponseDto> data = authorService.getAllAuthors();
-        return new ResponseEntity<>(new ApiResponse<>(200, "success", data), HttpStatus.OK);
+        return ResponseEntity.ok(new ApiResponse<>(200, "success", data));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getAuthorById(@PathVariable Integer id){
+    public ResponseEntity<ApiResponse<AuthorResponseDto>> getAuthorById(@PathVariable Integer id) {
         AuthorResponseDto data = authorService.getAuthorById(id);
-        return new ResponseEntity<>(new ApiResponse<>(200, "success", data), HttpStatus.OK);
-    } 
+        return ResponseEntity.ok(new ApiResponse<>(200, "success", data));
+    }
 
     @PostMapping("/")
-    public ResponseEntity<?> saveAuthor(@RequestBody AuthorRequestDto requestDto){
+    public ResponseEntity<ApiResponse<Author>> saveAuthor(@RequestBody AuthorRequestDto requestDto) {
         Author data = authorService.saveAuthor(requestDto);
-        return new ResponseEntity<>(new ApiResponse<>(200, "success", data), HttpStatus.OK);
+        return ResponseEntity.ok(new ApiResponse<>(200, "success", data));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateAuthor(@PathVariable Integer id, @RequestBody AuthorRequestDto requestDto){
+    public ResponseEntity<ApiResponse<Author>> updateAuthor(@PathVariable Integer id, @RequestBody AuthorRequestDto requestDto) {
         requestDto.setId(id);
         Author data = authorService.saveAuthor(requestDto);
-        return new ResponseEntity<>(new ApiResponse<>(200, "success", data), HttpStatus.OK);
+        return ResponseEntity.ok(new ApiResponse<>(200, "success", data));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteAuthor(@PathVariable Integer id){
+    public ResponseEntity<ApiResponse<Void>> deleteAuthor(@PathVariable Integer id) {
         authorService.deleteAuthorById(id);
-        return new ResponseEntity<>(new ApiResponse<>(200, "success", null), HttpStatus.OK);
-
+        return ResponseEntity.ok(new ApiResponse<>(200, "success", null));
     }
     
     
