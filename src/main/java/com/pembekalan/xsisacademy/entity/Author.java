@@ -11,7 +11,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "Authors")
+@Table(name = "authors")
 @Data
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor

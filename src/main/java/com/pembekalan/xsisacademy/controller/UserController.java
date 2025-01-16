@@ -1,9 +1,6 @@
 package com.pembekalan.xsisacademy.controller;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,15 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.pembekalan.xsisacademy.dto.request.UserRequestDto;
 import com.pembekalan.xsisacademy.dto.response.UserResponseDto;
-import com.pembekalan.xsisacademy.entity.User;
 import com.pembekalan.xsisacademy.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 
@@ -30,10 +24,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class UserController {
     @Autowired
     UserService userService;
-
-    private ModelMapper modelMapper(){
-        return new ModelMapper();
-    }
 
     @GetMapping("")
     public ModelAndView getAllUsers() {

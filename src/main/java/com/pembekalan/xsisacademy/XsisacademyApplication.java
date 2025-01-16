@@ -9,9 +9,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import com.github.javafaker.Faker;
+import com.pembekalan.xsisacademy.entity.Author;
 import com.pembekalan.xsisacademy.entity.Category;
 import com.pembekalan.xsisacademy.entity.Publisher;
 import com.pembekalan.xsisacademy.entity.User;
+import com.pembekalan.xsisacademy.repository.AuthorRepository;
 import com.pembekalan.xsisacademy.repository.CategoryRepository;
 import com.pembekalan.xsisacademy.repository.PublisherRepository;
 import com.pembekalan.xsisacademy.repository.UserRepository;
@@ -27,6 +29,9 @@ public class XsisacademyApplication {
 
 	@Autowired
 	PublisherRepository publisherRepository;
+
+	@Autowired
+	AuthorRepository authorRepository;
 	public static void main(String[] args) {
 		SpringApplication.run(XsisacademyApplication.class, args);
 	}
@@ -53,6 +58,12 @@ public class XsisacademyApplication {
 				Publisher publisher = new Publisher(faker.book().publisher(), faker.address().fullAddress());
 				publisherRepository.save(publisher);
 			}
+
+			for(int i = 0; i < 10; i++){
+				Author author = new Author(faker.name().fullName(), faker.number().numberBetween(1, 101));
+				authorRepository.save(author);
+			}
+
 
 		};
 	}

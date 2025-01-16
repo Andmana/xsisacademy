@@ -27,7 +27,8 @@ public class AuthorServiceImpl implements AuthorService {
     public List<AuthorResponseDto> getAllAuthors() {
         // TODO Auto-generated method stub
         List<Author> authors = authorRepository.findAll();
-        List<AuthorResponseDto> authorResponseDtos = authors.stream().map(author -> modelMapper().map(authors, AuthorResponseDto.class)).collect(Collectors.toList());
+        List<AuthorResponseDto> authorResponseDtos = authors.stream().map(author -> modelMapper().map(author, AuthorResponseDto.class)).collect(Collectors.toList());
+        
         return authorResponseDtos;
     }
 

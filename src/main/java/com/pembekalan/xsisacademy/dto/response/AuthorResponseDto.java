@@ -1,4 +1,4 @@
-package com.pembekalan.xsisacademy.dto.request;
+package com.pembekalan.xsisacademy.dto.response;
 
 import lombok.Data;
 
