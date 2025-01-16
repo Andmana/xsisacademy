@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import com.pembekalan.xsisacademy.dto.request.AuthorRequestDto;
 import com.pembekalan.xsisacademy.dto.response.AuthorResponseDto;
 import com.pembekalan.xsisacademy.entity.Author;
-import com.pembekalan.xsisacademy.entity.Category;
 import com.pembekalan.xsisacademy.repository.AuthorRepository;
 import com.pembekalan.xsisacademy.service.AuthorService;
 

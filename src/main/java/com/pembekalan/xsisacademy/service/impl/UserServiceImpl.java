@@ -19,36 +19,39 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository userRepository;
 
-    private ModelMapper modelMapper(){
-        return new ModelMapper();
-    }
+    private ModelMapper modelMapper = new ModelMapper();
 
     @Override
     public List<UserResponseDto> getAllUsers() {
         // TODO Auto-generated method stub
-        List<User> users = userRepository.findAll();
-        List<UserResponseDto> userResponseDtos = users.stream().map(user -> modelMapper().map(user, UserResponseDto.class)).collect(Collectors.toList());
-        return userResponseDtos;
+        List<User> categories = userRepository.getAllUsers();
+        List<UserResponseDto> data = categories.stream().map(user -> modelMapper.map(user, UserResponseDto.class)).collect(Collectors.toList());
+        return data;
     }
 
     @Override
     public UserResponseDto getUserById(Integer id) {
+        // TODO Auto-generated method stub
         User user = userRepository.findById(id).orElse(null);
-        UserResponseDto userResponseDto = modelMapper().map(user, UserResponseDto.class);
-        return userResponseDto;
+        UserResponseDto data = modelMapper.map(user, UserResponseDto.class);
+        return data;
     }
 
     @Override
-    public User saveUser(UserRequestDto userRequestDto) {
-        User user = modelMapper().map(userRequestDto, User.class);
-        return userRepository.save(user);
+    public User saveUser(UserRequestDto requestDto) {
+        // TODO Auto-generated method stub
+        User data = modelMapper.map(requestDto, User.class);
+        return userRepository.save(data);
     }
 
     @Override
     public void deleteUserById(Integer id) {
-        userRepository.deleteById(id);
+        // TODO Auto-generated method stub
+        User data = userRepository.findById(id).orElse(null);
+        if (data != null){
+            data.setDeleted(true);
+            userRepository.save(data);
+        }
     }
-
-     
     
 }

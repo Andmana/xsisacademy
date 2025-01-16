@@ -9,6 +9,6 @@ import com.pembekalan.xsisacademy.entity.User;
 public interface UserService {
     List<UserResponseDto> getAllUsers();
     UserResponseDto getUserById(Integer id);
-    User saveUser(UserRequestDto userRequestDto);
+    User saveUser(UserRequestDto requestDto);
     void deleteUserById(Integer id);
 }
