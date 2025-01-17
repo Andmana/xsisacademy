@@ -34,3 +34,5 @@ function deleteCategory(id) {
         },
     });
 }
+
+$("#category").addClass("active");

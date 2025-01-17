@@ -23,7 +23,6 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Category Name</th>
-                            <th scope="col">Tanggal Dibuat</th>
                             <th scope="col">Handle</th>
                         </tr>
                     </thead>
@@ -31,7 +30,6 @@
                         <tr th:each="category,iter : ${categories}">
                             <th scope="row" th:text="${iter.count}"></th>
                             <td th:text="${category.name}"></td>
-                            <td th:text="${category.createdAt}"></td>
                             <td>
                                 <button
                                     type="button"
