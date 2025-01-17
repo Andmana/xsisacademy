@@ -26,19 +26,19 @@ public class CategoryController {
     @Autowired
     CategoryService categoryService;
 
-    @GetMapping("")
+    @GetMapping()
     public ResponseEntity<ApiResponse<List<CategoryResponseDto>>> getAllCategories() {
         List<CategoryResponseDto> data = categoryService.getAllCategories();
         return ResponseEntity.ok(new ApiResponse<>(200, "success", data));
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}")    
     public ResponseEntity<ApiResponse<CategoryResponseDto>> getCategoryById(@PathVariable Integer id) {
         CategoryResponseDto data = categoryService.getCategoryById(id);
         return ResponseEntity.ok(new ApiResponse<>(200, "success", data));
     }
 
-    @PostMapping("/")
+    @PostMapping()
     public ResponseEntity<ApiResponse<Category>> saveCategory(@RequestBody CategoryRequestDto requestDto) {
         Category data = categoryService.saveCategory(requestDto);
         return ResponseEntity.ok(new ApiResponse<>(200, "success", data));

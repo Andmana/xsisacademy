@@ -1,4 +1,4 @@
-<form action="category/store" method="post" th:object="${category}">
+<form action="/api/category/" th:object="${category}">
     <input type="hidden" name="id" id="id" th:field="*{id}" />
     <div class="mb-3">
         <label for="name" class="form-label">Category Name</label>
@@ -13,7 +13,12 @@
         />
     </div>
 
-    <button type="submit" class="btn btn-primary" style="float: right">
+    <button
+        type="button"
+        class="btn btn-primary"
+        style="float: right"
+        onclick="saveCategory()"
+    >
         Save
     </button>
 </form>

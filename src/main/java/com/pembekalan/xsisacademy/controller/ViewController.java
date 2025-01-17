@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
+import com.pembekalan.xsisacademy.dto.response.CategoryResponseDto;
 import com.pembekalan.xsisacademy.utility.ApiEndpoints;
 
 
@@ -24,6 +25,8 @@ public class ViewController {
         model.addAttribute("title", title);
         return "author/index";
     }
+
+    
 
     @GetMapping("/book")
     public String getAllBooks(Model model) {

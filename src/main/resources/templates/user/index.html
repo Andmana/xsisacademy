@@ -7,37 +7,43 @@
 >
     <body>
         <section layout:fragment="container">
-            <h2 th:text="${title}"></h2>
-            <div class="mb-2">
-                <button
-                    type="button"
-                    class="btn btn-primary"
-                    onclick="openForm()"
-                >
-                    Add User
-                </button>
-            </div>
-            <div class="table-responsive">
-                <table class="table table-primary">
+            <h3 th:text="${title}"></h3>
+
+            <div class="m-auto col-10">
+                <div class="my-3 d-flex justify-content-end">
+                    <button
+                        class="d-block btn btn-sm btn-light d-inline-flex align-items-center"
+                        type="button"
+                        onclick="openForm()"
+                    >
+                        Add User
+                    </button>
+                </div>
+
+                <table class="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">User Name</th>
+                            <th class="ps-3" scope="col">#</th>
+                            <th scope="col">Costumer Name</th>
                             <th scope="col">Phone Number</th>
                             <th scope="col">Address</th>
-                            <th scope="col">Action</th>
+                            <th scope="col">Handle</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr th:each="user,iter : ${users}">
-                            <th scope="row" th:text="${iter.count}"></th>
+                    <tbody class="table-group-divider">
+                        <tr th:each="user, iter : ${users}">
+                            <th
+                                class="ps-3"
+                                scope="row"
+                                th:text="${iter.count}"
+                            ></th>
                             <td th:text="${user.name}"></td>
                             <td th:text="${user.phoneNumber}"></td>
                             <td th:text="${user.address}"></td>
                             <td>
                                 <button
                                     type="button"
-                                    class="btn btn-primary"
+                                    class="btn btn-sm btn-primary"
                                     data-bs-toggle="modal"
                                     data-bs-target="#myModal"
                                     th:value="${user.id}"
@@ -47,11 +53,11 @@
                                 </button>
                                 <button
                                     type="button"
-                                    class="btn btn-danger"
+                                    class="btn btn-sm btn-danger"
                                     th:value="${user.id}"
-                                    onclick="confirm('are you sure?', deleteUser(this.value))"
+                                    onclick="confirm('are you sure?', deleteCategory(this.value))"
                                 >
-                                    <i class="bi bi-trash3"></i>
+                                    <i class="bi bi-trash"></i>
                                 </button>
                             </td>
                         </tr>
