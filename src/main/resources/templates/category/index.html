@@ -12,7 +12,7 @@
             <div class="m-auto col-10">
                 <div class="my-3 d-flex justify-content-end">
                     <button
-                        class="d-block btn btn-sm btn-light d-inline-flex align-items-center"
+                        class="d-block btn btn-sm btn-light border-2 border-dark d-inline-flex align-items-center"
                         type="button"
                         onclick="openForm()"
                     >
@@ -25,7 +25,7 @@
                         <tr>
                             <th scope="col" class="ps-3 col-1">#</th>
                             <th scope="col" class="col-auto">Category</th>
-                            <th scope="col" class="col-3">Handle</th>
+                            <th scope="col" class="col-2">Handle</th>
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">
@@ -84,31 +84,41 @@
                                 ></button>
                             </div>
                             <div class="modal-body">
-                                <form id="form">
-                                    <input type="hidden" name="id" id="id" />
-                                    <div class="mb-3">
-                                        <label for="name" class="form-label"
-                                            >Category Name</label
-                                        >
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            id="name"
-                                            name="name"
-                                            placeholder="Category"
-                                            autofocus
-                                        />
-                                    </div>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <form id="form"></form>
+                                            <input
+                                                type="hidden"
+                                                name="id"
+                                                id="id"
+                                            />
+                                            <div class="mb-3">
+                                                <label
+                                                    for="name"
+                                                    class="form-label"
+                                                    >Category Name</label
+                                                >
+                                                <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="name"
+                                                    name="name"
+                                                    placeholder="Category"
+                                                    autofocus
+                                                />
+                                            </div>
 
-                                    <button
-                                        type="button"
-                                        class="btn btn-primary"
-                                        style="float: right"
-                                        onclick="saveCategory()"
-                                    >
-                                        Save
-                                    </button>
-                                </form>
+                                            <button
+                                                type="button"
+                                                class="btn btn-primary"
+                                                style="float: right"
+                                                onclick="saveCategory()"
+                                            >
+                                                Save
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
