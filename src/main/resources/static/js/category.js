@@ -1,57 +1,48 @@
-const CATEGORY_API_URL = "/api/category";
+const CATEGORY_API = "/api/category";
 $("#category").addClass("active");
-const id = $("#id");
-const name = $("#name");
-function openForm() {
-    $("#id").val(null);
-    $("#name").val(null);
+
+const getFormValue = () => ({
+    id: $("#id").val(),
+    name: $("#name").val(),
+});
+
+const openForm = (title = "Add Category", data = {}) => {
+    $("#id").val(data.id || null);
+    $("#name").val(data.name || null);
+    $(".modal-title").text(title);
     $("#myModal").modal("show");
-    $(".modal-title").html("Add Category");
-}
+};
 
-function saveCategory() {
-    let data = {
-        name: $("#name").val(),
-        id: $("#id").val(),
-    };
+const saveCategory = () => {
+    const { id } = getFormValue();
+    const method = id ? "put" : "post";
+    const url = id ? `${CATEGORY_API}/${id}` : CATEGORY_API;
 
-    let url =
-        id.val() == null ? CATEGORY_API_URL : CATEGORY_API_URL + `/${id.val()}`;
-    let method = id.val() == null ? "post" : "put";
     $.ajax({
         type: method,
-        url: url,
+        url,
         contentType: "application/json",
-        data: JSON.stringify(data),
-        success: function (response) {
+        data: JSON.stringify(getFormValue()),
+        success: () => {
             $("#myModal").modal("hide");
             location.reload();
         },
     });
-}
+};
 
-function editForm(id) {
-    $.ajax({
-        type: "get",
-        url: `${CATEGORY_API_URL}/${id}`,
-        dataType: "json",
-        success: function (response) {
-            const data = response.data;
-            openForm();
-            $("#id").val(data.id);
-            $("#name").val(data.name);
-        },
+const editForm = (id) => {
+    $.getJSON(`${CATEGORY_API}/${id}`, ({ data }) => {
+        openForm("Edit Category", data);
     });
-}
+};
 
-function deleteCategory(id) {
+const deleteCategory = (id) => {
     $.ajax({
         type: "delete",
-        url: `${CATEGORY_API_URL}/${id}`,
-        contentType: "html",
-        success: function (response) {
+        url: `${CATEGORY_API}/${id}`,
+        success: () => {
             alert("Delete Success");
             location.reload();
         },
     });
-}
+};

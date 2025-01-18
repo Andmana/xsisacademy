@@ -23,9 +23,9 @@
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th class="ps-3" scope="col">#</th>
-                            <th scope="col">Category</th>
-                            <th scope="col">Handle</th>
+                            <th scope="col" class="ps-3 col-1">#</th>
+                            <th scope="col" class="col-auto">Category</th>
+                            <th scope="col" class="col-3">Handle</th>
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">
@@ -45,7 +45,7 @@
                                     th:value="${category.id}"
                                     onclick="editForm(this.value)"
                                 >
-                                    <i class="bi bi-eye"></i>
+                                    <i class="bi bi-pencil"></i>
                                 </button>
                                 <button
                                     type="button"
@@ -95,7 +95,7 @@
                                             class="form-control"
                                             id="name"
                                             name="name"
-                                            placeholder="CategoryName"
+                                            placeholder="Category"
                                             autofocus
                                         />
                                     </div>
