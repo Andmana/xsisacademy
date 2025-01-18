@@ -38,7 +38,7 @@ public class BookController {
         return ResponseEntity.ok(new ApiResponse<>(200, "success", data));
     }
 
-    @PostMapping("/")
+    @PostMapping()
     public ResponseEntity<ApiResponse<Book>> saveBook(@RequestBody BookRequestDto requestDto) {
         Book data = bookService.saveBook(requestDto);
         return ResponseEntity.ok(new ApiResponse<>(200, "success", data));

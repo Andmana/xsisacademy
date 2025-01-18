@@ -12,19 +12,19 @@
             <div class="m-auto col-10">
                 <div class="my-3 d-flex justify-content-end">
                     <button
-                        class="d-block btn btn-sm btn-light d-inline-flex align-items-center"
+                        class="d-block btn btn-sm btn-light d-inline-flex align-items-center border-2 border-dark"
                         type="button"
                         onclick="openForm()"
                     >
-                        Add Publisher
+                        Add Book
                     </button>
                 </div>
 
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th class="ps-3" scope="col">#</th>
-                            <th scope="col">Title</th>
+                            <th scope="col" class="ps-3 col-sm-auto">#</th>
+                            <th scope="col" class="col-4">Title</th>
                             <th scope="col">Author</th>
                             <th scope="col">Category</th>
                             <th scope="col">Publish Year</th>
@@ -39,7 +39,7 @@
                                 scope="row"
                                 th:text="${iter.count}"
                             ></th>
-                            <td th:text="${book.title}"></td>
+                            <td class="text-truncate" style="max-width: 15ch;" th:text="${book.title}"></td>
                             <td th:text="${book.author.name}"></td>
                             <td th:text="${book.category.name}"></td>
                             <td th:text="${book.publishedYear}"></td>
@@ -53,13 +53,13 @@
                                     th:value="${book.id}"
                                     onclick="editForm(this.value)"
                                 >
-                                    <i class="bi bi-eye"></i>
+                                    <i class="bi bi-pencil"></i>
                                 </button>
                                 <button
                                     type="button"
                                     class="btn btn-sm btn-danger"
                                     th:value="${book.id}"
-                                    onclick="confirm('are you sure?', deleteCategory(this.value))"
+                                    onclick="confirm('are you sure?', deleteBook(this.value))"
                                 >
                                     <i class="bi bi-trash"></i>
                                 </button>
@@ -91,7 +91,60 @@
                                     aria-label="Close"
                                 ></button>
                             </div>
-                            <div class="modal-body"></div>
+                            <div class="modal-body">
+                                
+                                <div class="card">
+                                    <div class="card-body">
+                                        <form id="form"></form>
+                                            <input
+                                                type="hidden"
+                                                name="id"
+                                                id="id"
+                                            />
+                                            <div class="mb-3">
+                                                <label
+                                                    for="title"
+                                                    class="form-label text-truncate"
+                                                    >Book Title</label
+                                                >
+                                                <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="title"
+                                                    name="title"
+                                                    placeholder="Harry Potter"
+                                                    autofocus
+                                                />
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label
+                                                    for="publishedYear"
+                                                    class="form-label"
+                                                    >Publish Year</label
+                                                >
+                                                <input
+                                                    type="number"
+                                                    class="form-control"
+                                                    id="publishedYear"
+                                                    name="publishedYear"
+                                                    placeholder="2025"
+                                                />
+                                            </div>
+                                                                                        
+                                            <button
+                                                type="button"
+                                                class="btn btn-primary"
+                                                style="float: right"
+                                                onclick="saveBook()"
+                                            >
+                                                Save
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                                
+                            </div>
                         </div>
                     </div>
                 </div>

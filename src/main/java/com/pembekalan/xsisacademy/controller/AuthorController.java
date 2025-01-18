@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.pembekalan.xsisacademy.dto.request.AuthorRequestDto;
 import com.pembekalan.xsisacademy.dto.response.ApiResponse;
@@ -33,6 +34,12 @@ public class AuthorController {
     @GetMapping("")
     public ResponseEntity<ApiResponse<List<AuthorResponseDto>>> getAllAuthors() {
         List<AuthorResponseDto> data = authorService.getAllAuthors();
+        return ResponseEntity.ok(new ApiResponse<>(200, "success", data));
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<ApiResponse<List<AuthorResponseDto>>> getAuthorsByName(@RequestParam(required = false) String name) {
+        List<AuthorResponseDto> data = authorService.getAuthorsByName(name);
         return ResponseEntity.ok(new ApiResponse<>(200, "success", data));
     }
 

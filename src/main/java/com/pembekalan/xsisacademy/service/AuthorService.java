@@ -8,6 +8,7 @@ import com.pembekalan.xsisacademy.entity.Author;
 
 public interface AuthorService {
     List<AuthorResponseDto> getAllAuthors();
+    List<AuthorResponseDto> getAuthorsByName(String name);
     AuthorResponseDto getAuthorById(Integer id);
     Author saveAuthor(AuthorRequestDto requestDto);
     void deleteAuthorById(Integer id);

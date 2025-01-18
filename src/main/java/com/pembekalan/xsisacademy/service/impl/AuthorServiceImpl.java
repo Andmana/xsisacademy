@@ -30,6 +30,14 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
+    public List<AuthorResponseDto> getAuthorsByName(String name) {
+        // TODO Auto-generated method stub
+        List<Author> authors = authorRepository.getAuthorsByName(name);
+        List<AuthorResponseDto> data = authors.stream().map(author -> modelMapper.map(author, AuthorResponseDto.class)).collect(Collectors.toList());
+        return data;
+    }
+
+    @Override
     public AuthorResponseDto getAuthorById(Integer id) {
         // TODO Auto-generated method stub
         Author author = authorRepository.findById(id).orElse(null);
