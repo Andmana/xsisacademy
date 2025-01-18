@@ -12,7 +12,7 @@
             <div class="m-auto col-10">
                 <div class="my-3 d-flex justify-content-end">
                     <button
-                        class="d-block btn btn-sm btn-light d-inline-flex align-items-center"
+                        class="d-block btn btn-sm btn-light d-inline-flex align-items-center border-2 border-dark"
                         type="button"
                         onclick="openForm()"
                     >
@@ -23,10 +23,12 @@
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th class="ps-3" scope="col">#</th>
-                            <th scope="col">Author Name</th>
-                            <th scope="col">Books Published</th>
-                            <th scope="col">Handle</th>
+                            <th scope="col" class="ps-3 col-1">#</th>
+                            <th scope="col" class="col-auto">Author Name</th>
+                            <th scope="col" class="col-sm-auto">
+                                Books Published
+                            </th>
+                            <th scope="col" class="col-2">Handle</th>
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">
@@ -36,7 +38,7 @@
                                 scope="row"
                                 th:text="${iter.count}"
                             ></th>
-                            <td th:text="${author.name}"></td>
+                            <td class="" th:text="${author.name}"></td>
                             <td th:text="${author.publishedBooks}"></td>
                             <td>
                                 <button
@@ -47,13 +49,13 @@
                                     th:value="${author.id}"
                                     onclick="editForm(this.value)"
                                 >
-                                    <i class="bi bi-eye"></i>
+                                    <i class="bi bi-pencil"></i>
                                 </button>
                                 <button
                                     type="button"
                                     class="btn btn-sm btn-danger"
                                     th:value="${author.id}"
-                                    onclick="confirm('are you sure?', deleteCategory(this.value))"
+                                    onclick="confirm('are you sure?', deleteAuthor(this.value))"
                                 >
                                     <i class="bi bi-trash"></i>
                                 </button>
@@ -85,12 +87,63 @@
                                     aria-label="Close"
                                 ></button>
                             </div>
-                            <div class="modal-body"></div>
+                            <div class="modal-body">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <form id="form"></form>
+                                            <input
+                                                type="hidden"
+                                                name="id"
+                                                id="id"
+                                            />
+                                            <div class="mb-3">
+                                                <label
+                                                    for="name"
+                                                    class="form-label"
+                                                    >Author's Name</label
+                                                >
+                                                <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="name"
+                                                    name="name"
+                                                    placeholder="Natsume Kafka"
+                                                    autofocus
+                                                />
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label
+                                                    for="publishedBooks"
+                                                    class="form-label"
+                                                    >Author's Name</label
+                                                >
+                                                <input
+                                                    type="number"
+                                                    class="form-control"
+                                                    id="publishedBooks"
+                                                    name="publishedBooks"
+                                                    placeholder="0"
+                                                />
+                                            </div>
+
+                                            <button
+                                                type="button"
+                                                class="btn btn-primary"
+                                                style="float: right"
+                                                onclick="saveAuthor()"
+                                            >
+                                                Save
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- <script src="js/author.js"></script> -->
+            <script src="js/author.js"></script>
         </section>
     </body>
 </html>
