@@ -1,5 +1,5 @@
 const AUTHOR_API = "/api/author";
-$("#category").addClass("active");
+$("#author").addClass("active");
 
 const getFormValue = () => ({
     id: $("#id").val(),

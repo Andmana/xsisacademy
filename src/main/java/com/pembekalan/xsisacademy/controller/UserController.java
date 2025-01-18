@@ -39,7 +39,7 @@ public class UserController {
         return ResponseEntity.ok(new ApiResponse<>(200, "success", data));
     }
 
-    @PostMapping("/")
+    @PostMapping()
     public ResponseEntity<ApiResponse<User>> saveUser(@RequestBody UserRequestDto requestDto) {
         User data = userService.saveUser(requestDto);
         return ResponseEntity.ok(new ApiResponse<>(200, "success", data));
