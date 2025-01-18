@@ -12,7 +12,7 @@
             <div class="m-auto col-10">
                 <div class="my-3 d-flex justify-content-end">
                     <button
-                        class="d-block btn btn-sm btn-light d-inline-flex align-items-center"
+                        class="d-block btn btn-sm btn-light d-inline-flex align-items-center btn-light border-2 border-black"
                         type="button"
                         onclick="openForm()"
                     >
@@ -23,10 +23,10 @@
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th class="ps-3" scope="col">#</th>
-                            <th scope="col">Publisher Name</th>
-                            <th scope="col">Address</th>
-                            <th scope="col">Handle</th>
+                            <th scope="col" class="ps-3 col-sm-1">#</th>
+                            <th scope="col" class="col-auto">Publisher Name</th>
+                            <th scope="col" class="col-auto">Address</th>
+                            <th scope="col" class="col-2">Handle</th>
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">
@@ -47,13 +47,13 @@
                                     th:value="${publisher.id}"
                                     onclick="editForm(this.value)"
                                 >
-                                    <i class="bi bi-eye"></i>
+                                    <i class="bi bi-pencil"></i>
                                 </button>
                                 <button
                                     type="button"
                                     class="btn btn-sm btn-danger"
                                     th:value="${publisher.id}"
-                                    onclick="confirm('are you sure?', deleteCategory(this.value))"
+                                    onclick="confirm('are you sure?', deletePublisher(this.value))"
                                 >
                                     <i class="bi bi-trash"></i>
                                 </button>
@@ -85,12 +85,63 @@
                                     aria-label="Close"
                                 ></button>
                             </div>
-                            <div class="modal-body"></div>
+                            <div class="modal-body">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <form id="form"></form>
+                                            <input
+                                                type="hidden"
+                                                name="id"
+                                                id="id"
+                                            />
+                                            <div class="mb-3">
+                                                <label
+                                                    for="name"
+                                                    class="form-label"
+                                                    >Publisher Name</label
+                                                >
+                                                <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="name"
+                                                    name="name"
+                                                    placeholder="Publisher"
+                                                    autofocus
+                                                />
+                                            </div>
+                                            <div class="mb-3">
+                                                <label
+                                                    for="address"
+                                                    class="form-label"
+                                                    >Address</label
+                                                >
+                                                <textarea
+                                                    rows="4"
+                                                    class="form-control"
+                                                    id="address"
+                                                    name="address"
+                                                    placeholder="Publisher"
+                                                    autofocus
+                                                ></textarea>
+                                            </div>
+
+                                            <button
+                                                type="button"
+                                                class="btn btn-primary"
+                                                style="float: right"
+                                                onclick="savePublisher()"
+                                            >
+                                                Save
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- <script src="js/publisher.js"></script> -->
+            <script src="js/publisher.js"></script>
         </section>
     </body>
 </html>

@@ -39,7 +39,7 @@ public class PublisherController {
         return ResponseEntity.ok(new ApiResponse<>(200, "success", data));
     }
     
-    @PostMapping("/")
+    @PostMapping()
     public ResponseEntity<ApiResponse<Publisher>> savePublisher(@RequestBody PublisherRequestDto requestDto) {
         Publisher data = publisherService.savePublisher(requestDto);
         return ResponseEntity.ok(new ApiResponse<>(200, "success", data));
