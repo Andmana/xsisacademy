@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pembekalan.xsisacademy.dto.request.CategoryRequestDto;
@@ -29,6 +30,12 @@ public class CategoryController {
     @GetMapping()
     public ResponseEntity<ApiResponse<List<CategoryResponseDto>>> getAllCategories() {
         List<CategoryResponseDto> data = categoryService.getAllCategories();
+        return ResponseEntity.ok(new ApiResponse<>(200, "success", data));
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<ApiResponse<List<CategoryResponseDto>>> getCategorisByName(@RequestParam(required = false) String name) {
+        List<CategoryResponseDto> data = categoryService.getCategoriesByName(name);
         return ResponseEntity.ok(new ApiResponse<>(200, "success", data));
     }
 
