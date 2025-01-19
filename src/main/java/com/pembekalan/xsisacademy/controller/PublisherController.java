@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pembekalan.xsisacademy.dto.request.PublisherRequestDto;
@@ -30,6 +31,12 @@ public class PublisherController {
     @GetMapping("")
     public ResponseEntity<ApiResponse<List<PublisherResponseDto>>> getAllPublishers() {
         List<PublisherResponseDto> data = publisherService.getAllPublishers();
+        return ResponseEntity.ok(new ApiResponse<>(200, "success", data));
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<ApiResponse<List<PublisherResponseDto>>> getPublishersByName(@RequestParam(required = false) String name) {
+        List<PublisherResponseDto> data = publisherService.getPublishersByName(name);
         return ResponseEntity.ok(new ApiResponse<>(200, "success", data));
     }
     

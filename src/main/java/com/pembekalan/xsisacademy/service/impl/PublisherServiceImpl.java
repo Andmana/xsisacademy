@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pembekalan.xsisacademy.dto.request.PublisherRequestDto;
+import com.pembekalan.xsisacademy.dto.response.AuthorResponseDto;
 import com.pembekalan.xsisacademy.dto.response.PublisherResponseDto;
+import com.pembekalan.xsisacademy.entity.Author;
 import com.pembekalan.xsisacademy.entity.Publisher;
 import com.pembekalan.xsisacademy.repository.PublisherRepository;
 import com.pembekalan.xsisacademy.service.PublisherService;
@@ -25,6 +27,15 @@ public class PublisherServiceImpl implements PublisherService {
     public List<PublisherResponseDto> getAllPublishers() {
         // TODO Auto-generated method stub
         List<Publisher> publishers = publisherRepository.getAllPublishers();
+        List<PublisherResponseDto> data = publishers.stream().map(publisher -> modelMapper.map(publisher, PublisherResponseDto.class)).collect(Collectors.toList());
+        return data;
+    }
+
+    @Override
+    public List<PublisherResponseDto> getPublishersByName(String name) {
+        // TODO Auto-generated method stub
+        
+        List<Publisher> publishers = name == null? publisherRepository.getAllPublishers() :  publisherRepository.getPublishersByName(name);
         List<PublisherResponseDto> data = publishers.stream().map(publisher -> modelMapper.map(publisher, PublisherResponseDto.class)).collect(Collectors.toList());
         return data;
     }

@@ -8,6 +8,8 @@ import com.pembekalan.xsisacademy.entity.Publisher;
 
 public interface PublisherService {
     List<PublisherResponseDto> getAllPublishers();
+    List<PublisherResponseDto> getPublishersByName(String name);
+
     PublisherResponseDto getPublisherById(Integer id);
     Publisher savePublisher(PublisherRequestDto requestDto);
     void deletePublisherById(Integer id);
