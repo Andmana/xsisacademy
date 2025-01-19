@@ -39,7 +39,11 @@
                                 scope="row"
                                 th:text="${iter.count}"
                             ></th>
-                            <td class="text-truncate" style="max-width: 15ch;" th:text="${book.title}"></td>
+                            <td
+                                class="text-truncate"
+                                style="max-width: 15ch"
+                                th:text="${book.title}"
+                            ></td>
                             <td th:text="${book.author.name}"></td>
                             <td th:text="${book.category.name}"></td>
                             <td th:text="${book.publishedYear}"></td>
@@ -67,13 +71,13 @@
                         </tr>
                     </tbody>
                 </table>
+
                 <!-- Modal -->
                 <div
                     class="modal fade"
                     id="myModal"
                     data-bs-backdrop="static"
                     data-bs-keyboard="false"
-                    tabindex="-1"
                     aria-labelledby="formLabel"
                     aria-hidden="true"
                 >
@@ -92,15 +96,15 @@
                                 ></button>
                             </div>
                             <div class="modal-body">
-                                
                                 <div class="card">
                                     <div class="card-body">
-                                        <form id="form"></form>
+                                        <form id="form">
                                             <input
                                                 type="hidden"
                                                 name="id"
                                                 id="id"
                                             />
+
                                             <div class="mb-3">
                                                 <label
                                                     for="title"
@@ -119,6 +123,19 @@
 
                                             <div class="mb-3">
                                                 <label
+                                                    for="authorId"
+                                                    class="form-label"
+                                                    >Author</label
+                                                >
+                                                <select
+                                                    class="form-select"
+                                                    id="authorId"
+                                                    data-placeholder="Choose one thing"
+                                                ></select>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label
                                                     for="publishedYear"
                                                     class="form-label"
                                                     >Publish Year</label
@@ -131,7 +148,33 @@
                                                     placeholder="2025"
                                                 />
                                             </div>
-                                                                                        
+
+                                            <div class="mb-3">
+                                                <label
+                                                    for="categoryId"
+                                                    class="form-label"
+                                                    >Category</label
+                                                >
+                                                <select
+                                                    class="form-select"
+                                                    id="categoryId"
+                                                    data-placeholder="Choose one thing"
+                                                ></select>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label
+                                                    for="publisherId"
+                                                    class="form-label"
+                                                    >Publisher</label
+                                                >
+                                                <select
+                                                    class="form-select"
+                                                    id="publisherId"
+                                                    data-placeholder="Choose one thing"
+                                                ></select>
+                                            </div>
+
                                             <button
                                                 type="button"
                                                 class="btn btn-primary"
@@ -143,13 +186,14 @@
                                         </form>
                                     </div>
                                 </div>
-                                
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- <script src="js/book.js"></script> -->
+            <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+            <script src="js/book.js"></script>
         </section>
     </body>
 </html>
