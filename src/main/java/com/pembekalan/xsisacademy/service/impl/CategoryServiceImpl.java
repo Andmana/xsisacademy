@@ -31,6 +31,14 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
     @Override
+    public List<CategoryResponseDto> getCategoriesByName(String name) {
+        // TODO Auto-generated method stub
+        List<Category> categories = name == null? categoryRepository.getAllCategories() :  categoryRepository.getCategoriesByName(name);
+        List<CategoryResponseDto> data = categories.stream().map(category -> modelMapper.map(category, CategoryResponseDto.class)).collect(Collectors.toList());
+        return data;
+    }
+
+    @Override
     public CategoryResponseDto getCategoryById(Integer id) {
         // TODO Auto-generated method stub
         Category category = categoryRepository.findById(id).orElse(null);
@@ -54,5 +62,7 @@ public class CategoryServiceImpl implements CategoryService{
             categoryRepository.save(data);
         }
     }
+
+    
     
 }
