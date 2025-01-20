@@ -4,9 +4,7 @@ const API = {
     CATEGORY: "/api/category/search",
     PUBLISHER: "/api/publisher/search",
 };
-
-$("#book").addClass("active");
-
+const form = document.getElementById("form");
 const getFormValue = () => ({
     id: $("#id").val(),
     title: $("#title").val(),
@@ -39,9 +37,16 @@ const openForm = (title = "Add Book", data = {}) => {
 
     $(".modal-title").text(title);
     $("#myModal").modal("show");
+    form.classList.remove("was-validated");
 };
 
 const saveBook = () => {
+    // Check form validity
+    if (!form.checkValidity()) {
+        form.classList.add("was-validated"); // Add Bootstrap validation class
+        return; // Stop if form is invalid
+    }
+
     const { id } = getFormValue();
     const method = id ? "put" : "post";
     const url = id ? `${API.BOOK}/${id}` : API.BOOK;
@@ -102,4 +107,5 @@ $(document).ready(() => {
     setupSelect2("#authorId", API.AUTHOR);
     setupSelect2("#categoryId", API.CATEGORY);
     setupSelect2("#publisherId", API.PUBLISHER);
+    $("#book").addClass("active");
 });

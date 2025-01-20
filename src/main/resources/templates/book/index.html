@@ -98,11 +98,12 @@
                             <div class="modal-body">
                                 <div class="card">
                                     <div class="card-body">
-                                        <form id="form">
+                                        <form id="form" class="">
                                             <input
                                                 type="hidden"
                                                 name="id"
                                                 id="id"
+                                                required
                                             />
 
                                             <div class="mb-3">
@@ -117,8 +118,12 @@
                                                     id="title"
                                                     name="title"
                                                     placeholder="Harry Potter"
+                                                    required
                                                     autofocus
                                                 />
+                                                <div class="invalid-feedback">
+                                                    Please enter a book title.
+                                                </div>
                                             </div>
 
                                             <div class="mb-3">
@@ -131,6 +136,7 @@
                                                     class="form-select"
                                                     id="authorId"
                                                     data-placeholder="Choose one thing"
+                                                    required
                                                 ></select>
                                             </div>
 
@@ -144,6 +150,7 @@
                                                     class="form-select"
                                                     id="categoryId"
                                                     data-placeholder="Choose one thing"
+                                                    required
                                                 ></select>
                                             </div>
 
@@ -157,6 +164,7 @@
                                                     class="form-select"
                                                     id="publisherId"
                                                     data-placeholder="Choose one thing"
+                                                    required
                                                 ></select>
                                             </div>
 
@@ -173,7 +181,14 @@
                                                         id="publishedYear"
                                                         name="publishedYear"
                                                         placeholder="2025"
+                                                        required
                                                     />
+                                                    <div
+                                                        class="invalid-feedback"
+                                                    >
+                                                        Please enter a book
+                                                        title.
+                                                    </div>
                                                 </div>
 
                                                 <div class="col">
@@ -188,7 +203,14 @@
                                                         id="stock"
                                                         name="stock"
                                                         placeholder="0"
+                                                        required
                                                     />
+                                                    <div
+                                                        class="invalid-feedback"
+                                                    >
+                                                        Please enter a book
+                                                        title.
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -204,8 +226,11 @@
                                                     id="synopsis"
                                                     name="synopsis"
                                                     placeholder="That Time I Got Reincarnated as a Slime"
-                                                    autofocus
+                                                    required
                                                 ></textarea>
+                                                <div class="invalid-feedback">
+                                                    Please enter a book title.
+                                                </div>
                                             </div>
 
                                             <button
