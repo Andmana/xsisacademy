@@ -29,39 +29,70 @@ public class CategoryController {
 
     @GetMapping()
     public ResponseEntity<ApiResponse<List<CategoryResponseDto>>> getAllCategories() {
-        List<CategoryResponseDto> data = categoryService.getAllCategories();
-        return ResponseEntity.ok(new ApiResponse<>(200, "success", data));
+        try {
+            List<CategoryResponseDto> data = categoryService.getAllCategories();
+            return ResponseEntity.ok(new ApiResponse<>(200, "success", data));
+        } catch (Exception e) {
+            // Handle exception and return an appropriate error response
+            ApiResponse<List<CategoryResponseDto>> errorResponse = new ApiResponse<>(404, "error: " + e.getMessage(), null);
+            return ResponseEntity.status(404).body(errorResponse);
+        }
     }
 
     @GetMapping("/search")
     public ResponseEntity<ApiResponse<List<CategoryResponseDto>>> getCategorisByName(@RequestParam(required = false) String name) {
-        List<CategoryResponseDto> data = categoryService.getCategoriesByName(name);
-        return ResponseEntity.ok(new ApiResponse<>(200, "success", data));
+        try {
+            List<CategoryResponseDto> data = categoryService.getCategoriesByName(name);
+            return ResponseEntity.ok(new ApiResponse<>(200, "success", data));
+        } catch (Exception e) {
+            ApiResponse<List<CategoryResponseDto>> errorResponse = new ApiResponse<>(404, "error: " + e.getMessage(), null);
+            return ResponseEntity.status(404).body(errorResponse);
+        }
     }
 
     @GetMapping("/{id}")    
     public ResponseEntity<ApiResponse<CategoryResponseDto>> getCategoryById(@PathVariable Integer id) {
-        CategoryResponseDto data = categoryService.getCategoryById(id);
-        return ResponseEntity.ok(new ApiResponse<>(200, "success", data));
+        try {
+            CategoryResponseDto data = categoryService.getCategoryById(id);
+            return ResponseEntity.ok(new ApiResponse<>(200, "success", data));
+        } catch (Exception e) {
+            ApiResponse<CategoryResponseDto> errorResponse = new ApiResponse<>(404, "error: " + e.getMessage(), null);
+            return ResponseEntity.status(404).body(errorResponse);
+        }
     }
 
     @PostMapping()
-    public ResponseEntity<ApiResponse<Category>> saveCategory(@RequestBody CategoryRequestDto requestDto) {
-        Category data = categoryService.saveCategory(requestDto);
-        return ResponseEntity.ok(new ApiResponse<>(200, "success", data));
+    public ResponseEntity<ApiResponse<?>> saveCategory(@RequestBody CategoryRequestDto requestDto) {
+        try {
+            Category data = categoryService.saveCategory(requestDto);
+            return ResponseEntity.ok(new ApiResponse<>(200, "success", data));
+        } catch (Exception e) {
+            ApiResponse<CategoryRequestDto> errorResponse = new ApiResponse<>(404, "error: " + e.getMessage(), requestDto);
+            return ResponseEntity.status(404).body(errorResponse);
+        }
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ApiResponse<Category>> updateCategory(@PathVariable Integer id, @RequestBody CategoryRequestDto requestDto) {
-        requestDto.setId(id);
-        Category data = categoryService.saveCategory(requestDto);
-        return ResponseEntity.ok(new ApiResponse<>(200, "success", data));
+    public ResponseEntity<ApiResponse<?>> updateCategory(@PathVariable Integer id, @RequestBody CategoryRequestDto requestDto) {
+        try {
+            requestDto.setId(id);
+            Category data = categoryService.saveCategory(requestDto);
+            return ResponseEntity.ok(new ApiResponse<>(200, "success", data));
+        } catch (Exception e) {
+            ApiResponse<CategoryRequestDto> errorResponse = new ApiResponse<>(404, "error: " + e.getMessage(), requestDto);
+            return ResponseEntity.status(404).body(errorResponse);
+        }
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<ApiResponse<Void>> deleteCategory(@PathVariable Integer id) {
-        categoryService.deleteCategoryById(id);
-        return ResponseEntity.ok(new ApiResponse<>(200, "success", null));
+    public ResponseEntity<ApiResponse<?>> deleteCategory(@PathVariable Integer id) {
+        try {
+            categoryService.deleteCategoryById(id);
+            return ResponseEntity.ok(new ApiResponse<>(200, "success", null));
+        } catch (Exception e) {
+            ApiResponse<?> errorResponse = new ApiResponse<>(404, "error: " + e.getMessage(), e);
+            return ResponseEntity.status(404).body(errorResponse);
+        }
     }
 
 }

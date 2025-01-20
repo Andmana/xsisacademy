@@ -26,6 +26,6 @@ public class Category extends BaseEntity {
     @Column(name = "id")
     private Integer id;
     
-    @Column(length = 100)
+    @Column(length = 100, nullable = false)
     private String name;
 }

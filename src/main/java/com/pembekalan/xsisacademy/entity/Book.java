@@ -47,6 +47,7 @@ public class Book extends BaseEntity{
     @JoinColumn(name = "publisher_id", nullable = false) // FK in books table
     private Publisher publisher;
 
+    @Column(nullable = false)
     private String title;
 
     @Column(columnDefinition = "TEXT") // For storing long text
