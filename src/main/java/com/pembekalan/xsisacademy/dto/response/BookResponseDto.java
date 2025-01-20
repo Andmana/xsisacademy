@@ -13,4 +13,5 @@ public class BookResponseDto {
     private String title;
     private String synopsis;
     private Integer publishedYear;
+    private Integer stock;
 }

@@ -14,6 +14,8 @@ const getFormValue = () => ({
     authorId: $("#authorId").val(),
     categoryId: $("#categoryId").val(),
     publisherId: $("#publisherId").val(),
+    stock: $("#stock").val(),
+    synopsis: $("#synopsis").val(),
 });
 
 const openForm = (title = "Add Book", data = {}) => {
@@ -28,6 +30,8 @@ const openForm = (title = "Add Book", data = {}) => {
     $("#id").val(data.id || null);
     $("#title").val(data.title || null);
     $("#publishedYear").val(data.publishedYear || null);
+    $("#stock").val(data.stock || null);
+    $("#synopsis").val(data.synopsis || null);
 
     setSelectOption("#authorId", data.author);
     setSelectOption("#categoryId", data.category);
@@ -78,6 +82,8 @@ const setupSelect2 = (selector, apiUrl) => {
         placeholder: $(selector).data("placeholder"),
         allowClear: true,
         dropdownParent: $("#myModal"),
+        selectionCssClass: "select2--small",
+        dropdownCssClass: "select2--small",
         ajax: {
             url: apiUrl,
             dataType: "json",

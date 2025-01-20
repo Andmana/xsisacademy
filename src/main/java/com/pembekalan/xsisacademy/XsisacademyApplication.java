@@ -86,9 +86,9 @@ public class XsisacademyApplication {
 			publisher2 = publisherRepository.save(publisher2);
 			publisher3 = publisherRepository.save(publisher3);
 
-			Book book1 = new Book(author1, horror, publisher1, faker.book().title(), faker.lorem().sentence(10), faker.number().numberBetween(1900, 2025));
-			Book book2 = new Book(author2, novel, publisher2, faker.book().title(), faker.lorem().sentence(10), faker.number().numberBetween(1900, 2025));
-			Book book3 = new Book(author3, horror, publisher3, faker.book().title(), faker.lorem().sentence(10), faker.number().numberBetween(1900, 2025));
+			Book book1 = new Book(author1, horror, publisher1, faker.book().title(), faker.lorem().sentence(10), faker.number().numberBetween(1900, 2025), faker.number().numberBetween(0, 8));
+			Book book2 = new Book(author2, novel, publisher2, faker.book().title(), faker.lorem().sentence(10), faker.number().numberBetween(1900, 2025), faker.number().numberBetween(0, 8));
+			Book book3 = new Book(author3, horror, publisher3, faker.book().title(), faker.lorem().sentence(10), faker.number().numberBetween(1900, 2025), faker.number().numberBetween(0, 8));
 
 
 			bookRepository.save(book1);

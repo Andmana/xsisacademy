@@ -19,13 +19,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Book extends BaseEntity{
 
-    public Book(Author author, Category category, Publisher publisher, String title, String synopsis, Integer publishedYear) {
+    public Book(Author author, Category category, Publisher publisher, String title, String synopsis, Integer publishedYear, Integer stock) {
         this.author = author;
         this.category = category;
         this.publisher = publisher;
         this.title = title;
         this.synopsis = synopsis;
         this.publishedYear = publishedYear;
+        this.stock = stock;
     }
 
     @Id
@@ -51,7 +52,9 @@ public class Book extends BaseEntity{
     @Column(columnDefinition = "TEXT") // For storing long text
     private String synopsis;
 
-    @Column(nullable = true)
     private Integer publishedYear;
+
+    private Integer stock;
+
 
 }

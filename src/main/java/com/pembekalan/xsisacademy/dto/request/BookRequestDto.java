@@ -11,4 +11,5 @@ public class BookRequestDto {
     private String title;
     private String synopsis;
     private Integer publishedYear;
+    private Integer stock;
 }

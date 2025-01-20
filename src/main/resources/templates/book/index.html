@@ -28,7 +28,7 @@
                             <th scope="col">Author</th>
                             <th scope="col">Category</th>
                             <th scope="col">Publish Year</th>
-                            <th scope="col">Publisher</th>
+                            <th scope="col">Stock</th>
                             <th scope="col">Handle</th>
                         </tr>
                     </thead>
@@ -47,7 +47,7 @@
                             <td th:text="${book.author.name}"></td>
                             <td th:text="${book.category.name}"></td>
                             <td th:text="${book.publishedYear}"></td>
-                            <td th:text="${book.publisher.name}"></td>
+                            <td th:text="${book.stock}"></td>
                             <td>
                                 <button
                                     type="button"
@@ -113,7 +113,7 @@
                                                 >
                                                 <input
                                                     type="text"
-                                                    class="form-control"
+                                                    class="form-control form-control-sm"
                                                     id="title"
                                                     name="title"
                                                     placeholder="Harry Potter"
@@ -132,21 +132,6 @@
                                                     id="authorId"
                                                     data-placeholder="Choose one thing"
                                                 ></select>
-                                            </div>
-
-                                            <div class="mb-3">
-                                                <label
-                                                    for="publishedYear"
-                                                    class="form-label"
-                                                    >Publish Year</label
-                                                >
-                                                <input
-                                                    type="number"
-                                                    class="form-control"
-                                                    id="publishedYear"
-                                                    name="publishedYear"
-                                                    placeholder="2025"
-                                                />
                                             </div>
 
                                             <div class="mb-3">
@@ -173,6 +158,54 @@
                                                     id="publisherId"
                                                     data-placeholder="Choose one thing"
                                                 ></select>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <div class="col">
+                                                    <label
+                                                        for="publishedYear"
+                                                        class="form-label"
+                                                        >Publish Year</label
+                                                    >
+                                                    <input
+                                                        type="number"
+                                                        class="form-control form-control-sm"
+                                                        id="publishedYear"
+                                                        name="publishedYear"
+                                                        placeholder="2025"
+                                                    />
+                                                </div>
+
+                                                <div class="col">
+                                                    <label
+                                                        for="stock"
+                                                        class="form-label"
+                                                        >Stock</label
+                                                    >
+                                                    <input
+                                                        type="number"
+                                                        class="form-control form-control-sm"
+                                                        id="stock"
+                                                        name="stock"
+                                                        placeholder="0"
+                                                    />
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label
+                                                    for="synopsis"
+                                                    class="form-label"
+                                                    >Synopsis</label
+                                                >
+                                                <textarea
+                                                    rows="4"
+                                                    class="form-control form-control-sm"
+                                                    id="synopsis"
+                                                    name="synopsis"
+                                                    placeholder="That Time I Got Reincarnated as a Slime"
+                                                    autofocus
+                                                ></textarea>
                                             </div>
 
                                             <button
